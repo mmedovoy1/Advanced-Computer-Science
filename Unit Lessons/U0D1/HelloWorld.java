@@ -67,7 +67,11 @@ public class HelloWorld {
         }
 
         //Challenge Complete 2
-        if (applecount == 5||)
+        if (appleCount == 5 || appleCount == 10) {
+            System.out.println("You ate" + appleCount + " apples.");
+        } else {
+            System.out.println("You ate a different number of apples;")
+        }
 
 
 }
