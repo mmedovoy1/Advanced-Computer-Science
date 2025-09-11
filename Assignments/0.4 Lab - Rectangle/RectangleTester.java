@@ -13,12 +13,12 @@ public class RectangleTester {
         System.out.println(rect2.toString());
 
 
-        System.out.println(rect.equals(rect2));
+        System.out.println("Are the rectangles equal? " + rect.equals(rect2));
 
-        System.out.println(rect.calculateArea());
+        System.out.println("Rect Area: " + rect.calculateArea());
 
-        System.out.println(rect.calculatePerimeter());
+        System.out.println("Rect Perimeter: " + rect.calculatePerimeter());
 
-        System.out.println(rect.calculateDiagonal());
+        System.out.println("Rect Diagonal: " + rect.calculateDiagonal());
     }
 }
