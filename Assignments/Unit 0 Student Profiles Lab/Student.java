@@ -1,14 +1,20 @@
-public class Student{
+public class Student {
     public String name;
     public int grade;
     public String id;
 
     // constructors
     public Student(String name, int grade) {
-        name = newName;
-        grade = newGrade;
+        this.name = name;
+        this.grade = grade;
         this.id = generatedId();
         
+    }
+
+    public Student(String name) {
+        this.name = name;
+        this.grade = 10;
+        this.id = generatedId();
     }
     
     // getters
@@ -39,14 +45,17 @@ public class Student{
 
     // methods
     public String toString() {
-        return(name + "is in " + grade + "th" )
+        return (name + " is a " + grade + "th grade student. Their id is " + id + ".");
     }
 
-    public boolean equals(Student other ) {
+    public boolean equals(Student other) {
         return grade == other.grade;
     }
 
     public String generatedId() {
-        return (int)((Math.random() * 7) + 2) + "" + (int)((Math.random() * 7) + 2) + "" + (int)((Math.random() * 7) + 2) + "" + (int)(Math.random() *10) + "" + (int)(Math.random() * 10) + "" + (int)(Math.random() * 10) + "" + (int)(Math.random() * 10) + "" + (int)(Math.random() * 7);
+        return (int) ((Math.random() * 7) + 2) + "" + (int) ((Math.random() * 7)
+            + 2) + "" + (int)  ((Math.random() * 7) + 2) + "-" + (int) (Math.random() * 10)
+            + "" + (int) (Math.random() * 10) + "" + (int) (Math.random() * 10)
+            + "" + (int) (Math.random() * 10);
     }
 }
