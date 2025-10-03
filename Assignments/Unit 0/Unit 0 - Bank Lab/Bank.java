@@ -7,7 +7,7 @@ public class Bank {
         this.numberOfLoanOfficers = numberOfLoanOfficers;
         this.numberOfTellers = numberOfTellers;
     }
-
+    
     // getters
     public int getNumberOfLoanOfficers() {
         return numberOfLoanOfficers;
