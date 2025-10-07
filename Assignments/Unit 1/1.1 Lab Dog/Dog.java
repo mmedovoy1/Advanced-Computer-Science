@@ -9,7 +9,7 @@ public class Dog {
 
 
     // Constructors
-    public Dog(String name, String ownerName, int age, int dogId) {
+    public Dog(String name, String ownerName, int age, int dogId, boolean stilInFacility) {
         this.name = name;
         this.ownerName = ownerName;
         this.age = age;
@@ -87,12 +87,12 @@ public class Dog {
 
     // Methods
     public String toString() {
-        String firstPart = (name + "is a good dog. They are " + age + " years old and belong to " + ownerName + ".");
+        String firstPart = (name + " is a good dog. They are " + age + " years old and belong to " + ownerName + ".");
         String secondPart = "";
         if (stillInFacility) {
-            secondPart = ("They are currently in our facility. For employee use only: DogTag is " + dogTag + dogChar + ". ");
+            secondPart = (" They are currently in our facility. For employee use only: DogTag is " + dogTag + dogChar + ". ");
         } else {
-            secondPart = ("They are currently not in our facility. For employee use only: DogTag is " + dogTag + dogChar + ".");
+            secondPart = (" They are currently not in our facility. For employee use only: DogTag is " + dogTag + dogChar + ".");
         }
         return (firstPart + secondPart);
     }
@@ -108,6 +108,19 @@ public class Dog {
     }
 
     public static char generateDogChar(int dogId) {
-        return (char)('F' + this.dogId % 10 + (this.dogId / 10) % 10 + this.dogId / 100 % 10);
+        return (char)('F' + dogId % 10 + (dogId / 10) % 10 + dogId / 100 % 10);
+    }
+
+    public static String pickup(Dog dog, String personName) {
+        if (dog.isStillInFacility() && dog.getOwnerName().equals(personName)) {
+            return ("Dog picked up successfully.");
+        } else {
+            return "Dog still in facility";
+        }
+    }
+
+    public static void checkIn(Dog dog, String personName) {
+        dog.setStillInFacility(true);
+        dog.setOwnerName(personName);
     }
 }
