@@ -1,4 +1,4 @@
-public class TraingleLoopstester {
+public class TriangleLoopsTester {
     public static void main(String[] args) {
         String output = TriangleLoops.createLetterTriangleUp(3, 'A');
         System.out.println(output);
@@ -8,5 +8,12 @@ public class TraingleLoopstester {
 
         System.out.println(TriangleLoops.createLetterTriangleDown(3, 'A'));
         System.out.println(TriangleLoops.createLetterTriangleDown(5, 'B'));
+
+        System.out.println(TriangleLoops.createNumbersTriangle(4));
+        System.out.println(TriangleLoops.createNumbersTriangle(2));
+
+
+        System.out.println(TriangleLoops.createAlphabetTriangle(5));
+        System.out.println(TriangleLoops.createAlphabetTriangle(26));
     }
 }
