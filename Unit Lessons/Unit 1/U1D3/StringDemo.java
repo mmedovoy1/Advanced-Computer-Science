@@ -34,7 +34,7 @@ public class StringDemo {
         System.out.println(fullName2.indexOf("n")); // 3
 
 
-        // substring() -> returns a piece of a string gicen a starting and ending index
+        // substring() -> returns a piece of a string given a starting and ending index
 
         // "Juan Antonio Lopez"
         int firstSpace = fullName2.indexOf(" "); // finds the index of first space
