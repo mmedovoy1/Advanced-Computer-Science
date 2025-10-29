@@ -14,10 +14,10 @@ public class NameOps {
     public static int indexOfSecondSpace(String name) {
         int firstspace = indexOfFirstSpace(name);
         if (firstspace > 0) {
-            String restname = name.substring(firstspace+1);
+            String restname = name.substring(firstspace + 1);
             if (indexOfFirstSpace(restname) > 0) {
-                 return (firstspace + indexOfFirstSpace(restname)+1);
-            } else { 
+                return (firstspace + indexOfFirstSpace(restname) + 1);
+            } else {
                 return -1;
             }
         } else {
@@ -41,7 +41,7 @@ public class NameOps {
             } else if (indexOfSecondSpace(name) == -1) {
                 return name.substring(indexOfFirstSpace(name) + 1);
             }
-        } 
+        }
         return "";
     }
 
@@ -56,16 +56,15 @@ public class NameOps {
         String last = findLastName(name);
         String first = findFirstName(name);
         String midIn = "";
-        if (findMiddleName(name).compareTo(" ") != 0) {
-            midIn = midIn + findMiddleName(name).charAt(1);
-        }
-        if (indexOfSecondSpace(name) == -1) {
-            return ()
-        }
+        String toGenerate = "";
         if (indexOfFirstSpace(name) == -1) {
-            return name;
+            toGenerate += first;
+        } else if (indexOfSecondSpace(name) == -1) {
+            toGenerate += last + ", " + first;
+        } else if (findMiddleName(name).compareTo(" ") != 0) {
+            midIn = midIn + findMiddleName(name).charAt(0);
+            toGenerate += last + ", " + first + " " + midIn + ".";
         }
-  
-        return (last + ", " + first + " " + midIn);
+        return (toGenerate);
     }
 }
