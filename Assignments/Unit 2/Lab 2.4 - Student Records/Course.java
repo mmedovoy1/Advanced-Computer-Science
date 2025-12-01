@@ -9,6 +9,11 @@ public class Course {
         this.enrolledStudents = enrolledStudents;
     }
 
+    public Course(String courseName, int maxEnrollment) {
+        this.courseName = courseName;
+        enrolledStudents = new StudentRecord[maxEnrollment];
+    }
+
     // getters
     // to-do: implement getters
     public String getCourseName() {
@@ -76,6 +81,60 @@ public class Course {
             }
         }
         return sum / denom;
+    }
+
+    public boolean isFull() {
+        if (enrolledStudents[enrolledStudents.length] != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public void enrollStudent(StudentRecord student) {
+        boolean availableSpot = false;
+        int spotCount = 0;
+        while (!availableSpot) {
+            if (enrolledStudents[spotCount] == null) {
+                availableSpot = true;
+            } else {
+                spotCount += 1;
+            }
+        }
+        enrolledStudents[spotCount] = student;
+    }
+
+    public boolean dropStudent(StudentRecord student) {
+        boolean isInStudentRecord = false;
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (student.equals(enrolledStudents[i])) {
+                enrolledStudents[i] = null;
+                isInStudentRecord = true;
+            }
+        }
+        if (isInStudentRecord) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int countEnrolledStudents() {
+        int count = 0;
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            if (enrolledStudents[i] != null) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    public void increaseClassSizeBy(int sizeIncrease) {
+        StudentRecord[] increased = new StudentRecord[enrolledStudents.length + sizeIncrease];
+        for (int i = 0; i < enrolledStudents.length; i++) {
+            increased[i] = enrolledStudents[i];
+        }
+        this.enrolledStudents = increased;
     }
 
 }

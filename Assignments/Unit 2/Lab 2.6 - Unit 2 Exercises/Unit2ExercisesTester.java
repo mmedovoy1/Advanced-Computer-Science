@@ -41,5 +41,6 @@ public class Unit2ExercisesTester {
         System.out.println(Unit2Exercises.firstTwo("h"));
         System.out.println(Unit2Exercises.firstTwo(""));
         System.out.println(Unit2Exercises.divide(10, 55));
+        System.out.println(Unit2Exercises.fizzString(""));
     }
 }

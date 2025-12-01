@@ -36,7 +36,9 @@ public class Unit2Exercises {
     }
 
     public static String fizzString(String str) {
-        if (str.substring(0, 1).equals("f") && str.substring(str.length() - 1).equals("b")) {
+        if (str.equals("")) {
+            return str;
+        } else if (str.substring(0, 1).equals("f") && str.substring(str.length() - 1).equals("b")) {
             return "FizzBuzz";
         } else if (str.substring(0, 1).equals("f")) {
             return "Fizz";
@@ -161,13 +163,11 @@ public class Unit2Exercises {
     public static int sum13(int[] nums) {
         if (nums.length != 0) {
             int sum = 0;
-            for (int i = 1; i < nums.length; i++) {
-                if (nums[i - 1] != 13 && nums[i - 2] != 13) {
-                    if (i == 1 && nums[0] != 13) {
-                        sum += nums[0];
-                    } else {
-                        sum += nums[i - 1];
-                    }
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] != 13) {
+                    sum += nums[i];
+                } else {
+                    i += 2;
                 }
             }
             return sum;
@@ -192,8 +192,8 @@ public class Unit2Exercises {
                 count += 1;
             }
         }
-        for (int i = 0; i < nums.length - 2; i++) {
-            if (nums[i] == 3 && nums[i + 1] == 3 && nums[i + 2] == 3) {
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 3 && nums[i + 1] == 3) {
                 three = true;
             }
         }
@@ -205,11 +205,15 @@ public class Unit2Exercises {
     }
 
     public static String[] fizzArray2(int n) {
-        String[] array = new String[n];
-        for (int i = 0; i < n; i++) {
-            array[i] = "i";
+        if (n != 0) {
+            String[] array = new String[n];
+            for (int i = 0; i < n; i++) {
+                array[i] = String.valueOf(i);
+            }
+            return array;
+        } else {
+            return new String[0];
         }
-        return array;
     }
 
     public static int[] zeroFront(int[] nums) {
