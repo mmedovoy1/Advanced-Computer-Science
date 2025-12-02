@@ -84,7 +84,7 @@ public class Course {
     }
 
     public boolean isFull() {
-        if (enrolledStudents[enrolledStudents.length] != null) {
+        if (enrolledStudents[enrolledStudents.length - 1] != null) {
             return true;
         } else {
             return false;
@@ -107,7 +107,7 @@ public class Course {
     public boolean dropStudent(StudentRecord student) {
         boolean isInStudentRecord = false;
         for (int i = 0; i < enrolledStudents.length; i++) {
-            if (student.equals(enrolledStudents[i])) {
+            if (enrolledStudents[i] != null && student.equals(enrolledStudents[i])) {
                 enrolledStudents[i] = null;
                 isInStudentRecord = true;
             }
