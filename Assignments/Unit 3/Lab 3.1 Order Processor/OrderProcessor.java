@@ -5,35 +5,27 @@ public class OrderProcessor {
         String[] expensiveItemsTemp = new String[items.length];
         int premiumCount = 0;
 
-        for (int i = 0; i < items.length; i++) {
-            Item item = items[i];
+        for (Item item : items) {
             String name = item.getName();
             double price = item.getPrice();
             int quantity = item.getQuantity();
 
             // Calculate item total
-            double itemTotal = price * quantity;
-            subtotal += itemTotal;
+            subtotal += itemTotal(item);
 
             // Check if expensive
-            if (price > 50.0) {
+            if (isExpensive(item)) {
                 expensiveItemsTemp[premiumCount] = name;
                 premiumCount += 1;
-                System.out.println(name + " is a premium item at $" + price);
-            } else {
-                System.out.println(name + " is a regular item at $" + price);
             }
         }
 
         // Trim premium items to exact size
-        String[] expensiveItems = new String[premiumCount];
-        for (int i = 0; i < premiumCount; i++) {
-            expensiveItems[i] = expensiveItemsTemp[i];
-        }
+        String[] expensiveItems = trimPremium(expensiveItemsTemp, premiumCount);
 
         // Calculate tax and total
-        double tax;
-        double total;
+        double tax = findTax(subtotal, taxRate);
+        double total = findTotal(subtotal, tax);
         if (subtotal > 0) {
             tax = subtotal * taxRate;
             total = subtotal + tax;
@@ -50,6 +42,33 @@ public class OrderProcessor {
         return new OrderSummary(total, subtotal, tax, expensiveItems);
     }
 
+    public static double itemTotal(Item item) {
+        return item.getPrice() * item.getQuantity();
+    }
 
+    public static boolean isExpensive(Item item) {
+        if (item.getPrice() > 50.0) {
+                System.out.println(item.getName() + " is a premium item at $" + item.getPrice());
+                return true;
+        } else {
+            System.out.println(item.getName() + " is a regular item at $" + item.getPrice());
+            return false;
+        }
+    }
 
+    public static String[] trimPremium(String[] expensiveItemsTemp, int premiumCount) {
+        String[] expensiveItems = new String[premiumCount];
+        for (int i = 0; i < premiumCount; i++) {
+            expensiveItems[i] = expensiveItemsTemp[i];
+        }
+        return expensiveItems;
+    } 
+
+    public static int findTax(int subtotal, int taxRate) {
+        if (subtotal > 0) {
+            return subtotal * taxRate;
+        } else {
+            return 0;
+        }
+    }
 }
