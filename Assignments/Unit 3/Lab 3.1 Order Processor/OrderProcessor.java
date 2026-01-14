@@ -34,9 +34,9 @@ public class OrderProcessor {
             total = 0;
         }
 
-        System.out.println("Subtotal: $" + subtotal);
-        System.out.println("Tax: $" + tax);
-        System.out.println("Total: $" + total);
+        System.out.println("Subtotal: $" + String.format("%.2f", subtotal));
+        System.out.println("Tax: $" + String.format("%.2f", tax));
+        System.out.println("Total: $" + String.format("%.2f", total));
         System.out.println("Number of premium items: " + premiumCount);
 
         return new OrderSummary(total, subtotal, tax, expensiveItems);
@@ -48,8 +48,8 @@ public class OrderProcessor {
 
     public static boolean isExpensive(Item item) {
         if (item.getPrice() > 50.0) {
-                System.out.println(item.getName() + " is a premium item at $" + item.getPrice());
-                return true;
+            System.out.println(item.getName() + " is a premium item at $" + item.getPrice());
+            return true;
         } else {
             System.out.println(item.getName() + " is a regular item at $" + item.getPrice());
             return false;
@@ -62,13 +62,17 @@ public class OrderProcessor {
             expensiveItems[i] = expensiveItemsTemp[i];
         }
         return expensiveItems;
-    } 
+    }
 
-    public static int findTax(int subtotal, int taxRate) {
+    public static double findTax(double subtotal, double taxRate) {
         if (subtotal > 0) {
             return subtotal * taxRate;
         } else {
             return 0;
         }
+    }
+
+    public static double findTotal(double subtotal, double tax) {
+        return subtotal + tax;
     }
 }

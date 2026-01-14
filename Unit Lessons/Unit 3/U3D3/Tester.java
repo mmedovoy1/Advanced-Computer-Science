@@ -1,4 +1,4 @@
-// Simple driver to trigger the buggy methods in DebugDemoStudent.
+ // Simple driver to trigger the buggy methods in DebugDemoStudent.
 // Run with: javac DebugDemoStudent.java Tester.java && java Tester
 public class Tester {
     public static void main(String[] args) {
