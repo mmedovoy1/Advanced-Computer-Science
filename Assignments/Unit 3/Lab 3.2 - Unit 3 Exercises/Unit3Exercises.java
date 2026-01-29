@@ -8,7 +8,7 @@ public class Unit3Exercises {
             throw new NullPointerException("This string array doesn't exist");
         } // array was null
         while (i < strs.length) {
-            if (strs[i] != null){ // make sure that string in array that is counted isn't null
+            if (strs[i] != null) { // make sure that string in array that is counted isn't null
                 sum += strs[i].length();
                 counted++;
             }
@@ -33,7 +33,7 @@ public class Unit3Exercises {
             right--;
         }
         if (chars.length > 2 && chars[0] == chars[chars.length - 1]) {
-            chars[0] = Character.toLowerCase(chars[0]); 
+            chars[0] = Character.toLowerCase(chars[0]);
         }
         return new String(chars);
     }
@@ -45,7 +45,7 @@ public class Unit3Exercises {
         }
         int max = numbers[0];
         for (int i = 1; i < numbers.length; i++) {
-            if (numbers[i] > max) { 
+            if (numbers[i] > max) {
                 max = numbers[i - 1];
             } else if (numbers[i] == max && i % 2 == 0) {
                 max = max + 1;
@@ -54,7 +54,7 @@ public class Unit3Exercises {
         return max; // took away negative
     }
 
-     // Intended: check whether the input string reads the same forwards and
+    // Intended: check whether the input string reads the same forwards and
     // backwards.
     public static boolean isPalindrome(String str) {
         if (str == null) {
@@ -100,11 +100,8 @@ public class Unit3Exercises {
     }
 
     public static int getNthFibonacci(int n) {
-        if (n == null) {
-            throw new NullPointerException("number is null");
-        }
-        if (n <= 1) {
-            return n;
+        if (n < 0) {
+            throw new IllegalArgumentException("int can't be negative");
         }
         int a = 0, b = 1;
         for (int i = 2; i <= n; i++) {
@@ -114,5 +111,107 @@ public class Unit3Exercises {
         }
         return b;
     }
-    
+
+    public static int[] sortArrayDescending(int[] arr) {
+        if (arr == null) {
+            throw new NullPointerException("arr can't be null");
+        }
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[i]) {
+                    int temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    public static String printArray(int[] arr) {
+        if (arr == null) {
+            throw new NullPointerException("arr can't be null");
+        }
+        String x = "{";
+        for (int i = 0; i < arr.length; i++) {
+            if (i == arr.length - 1) {
+                x += " " + arr[i];
+            } else if (i == 0) {
+                x += arr[i] + ",";
+            } else {
+                x += " " + arr[i] + ",";
+            }
+        }
+        return x + "}";
+    }
+
+    public static String findLongestWord(String sentence) {
+        if (sentence == null) {
+            throw new NullPointerException("sentence can't be null");
+        }
+        String[] words = sentence.split(" ");
+        String longestWord = "";
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() > longestWord.length()) {
+                longestWord = words[i];
+            }
+        }
+        return longestWord;
+    }
+
+    public static double calculateInterest(double principal, double rate, int years) {
+        if (principal < 0 || rate < 0 || years < 0) {
+            throw new IllegalArgumentException("can't be negative");
+        }
+        for (int i = 0; i < years; i++) {
+            principal += principal * (rate / 100);
+        }
+        return principal;
+    }
+
+    public static int parsePositiveInteger(String str) {
+        int number = Integer.parseInt(str);
+        if (number <= 0) {
+            throw new NumberFormatException("number is <= 0"); // added an exception
+        }
+        return number;
+    }
+
+    public static String getArrayElement(String[] arr, int index) {
+        if (index > arr.length) {
+            return null;
+        } else {
+            return arr[index];
+        }
+    }
+
+    public static double calculateSquareRoot(int number) {
+        if (number < 0) {
+            throw new IllegalArgumentException("Cannot calculate square root of a negative num");
+        }
+        return Math.sqrt(number);
+
+    }
+
+    public static int sumArrayElements(int[] array) {
+        if (array == null) {
+            throw new NullPointerException("array is null");
+        } else {
+            int sum = 0;
+            for (int i = 0; i < array.length; i++) {
+                sum += array[i];
+            }
+            return sum;
+        }
+    }
+
+    public static double calculatePower(double base, int exponent) {
+        if (exponent < 0) {
+            throw new IllegalArgumentException("Can't have negative exponent");
+        } else {
+            return Math.pow(base, exponent);
+        }
+
+    }
+
 }
