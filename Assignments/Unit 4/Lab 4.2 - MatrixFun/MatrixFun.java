@@ -4,18 +4,24 @@ public class MatrixFun {
     private int[][] matrix;
 
     public MatrixFun(int numberOfRows, int numberOfCols) {
-       this.numberOfRows = numberOfRows;
-       this.numberOfCols = numberOfCols;
-       this.matrix = new int[numberOfRows][numberOfCols];
+        if (numberOfCols < 0 || numberOfRows < 0) {
+            throw new IllegalArgumentException("dimensions can't be less than 0");
+        }
+        this.numberOfRows = numberOfRows;
+        this.numberOfCols = numberOfCols;
+        this.matrix = new int[numberOfRows][numberOfCols];
     }
 
     public MatrixFun(int[][] starterMatrix) {
         this.matrix = starterMatrix;
+        this.numberOfCols = matrix[0].length;
+        this.numberOfRows = matrix.length;
     }
 
     public MatrixFun() {
         this.numberOfRows = 3;
         this.numberOfCols = 3;
+        this.matrix = new int[numberOfRows][numberOfCols];
     }
 
     public int getNumberOfRows() {
@@ -42,7 +48,7 @@ public class MatrixFun {
         this.matrix = matrix;
     }
 
-    public String toString(){
+    public String toString() {
         String toReturn = "";
         int signs = ((this.getNumberOfCols() * 2) - 1);
         for (int i = 0; i < signs; i++) {
@@ -51,7 +57,7 @@ public class MatrixFun {
         toReturn += "\n";
         for (int[] row : matrix) {
             for (int cell : row) {
-                toReturn += cell + "\t";
+                toReturn += cell + " ";
             }
             toReturn += "\n";
         }
@@ -62,32 +68,31 @@ public class MatrixFun {
     }
 
     public boolean equals(MatrixFun other) {
-        if (matrix[0].length != other.getMatrix()[0].length && matrix.length != other.getMatrix().length) {
+        if (other == null) {
             return false;
         }
-        boolean doesEqual = true;
-        int count = -1;
-        for (int[] row : matrix) {
-            count += 1;
-            for (int cell : row) {
-                if (matrix[count][cell] != other.getMatrix()[count][cell]) {
+        if (matrix.length != other.getMatrix().length
+                || matrix[0].length != other.getMatrix()[0].length) {
+            return false;
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] != other.getMatrix()[i][j]) {
                     return false;
                 }
             }
         }
-        return doesEqual;
+        return true;
     }
 
     public boolean equals(int[][] other) {
-        if (matrix[0].length != other[0].length && matrix.length != other.length) {
+        if (matrix.length != other.length || matrix[0].length != other[0].length) {
             return false;
         }
         boolean doesEqual = true;
-        int count = -1;
-        for (int[] row : matrix) {
-            count += 1;
-            for (int cell : row) {
-                if (matrix[count][cell] != other[count][cell]) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                if (matrix[i][j] != other[i][j]) {
                     return false;
                 }
             }
@@ -106,10 +111,11 @@ public class MatrixFun {
     }
 
     public void swapRow(int rowA, int rowB) {
-        int[][] matrix2 = matrix;
-        for (int i = 0; i < matrix.length; i++) {
-            matrix[i][rowA] = matrix[i][rowB];
-            matrix[i][rowB] = matrix2[i][rowB];
+        if (rowA < 0 || rowB < 0 || rowA >= matrix.length || rowB >= matrix.length) {
+            throw new IllegalArgumentException("row A or row B < 0");
         }
+        int[] toSwap = matrix[rowA];
+        matrix[rowA] = matrix[rowB];
+        matrix[rowB] = toSwap;
     }
 }
