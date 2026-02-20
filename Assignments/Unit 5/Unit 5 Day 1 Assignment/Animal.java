@@ -1,17 +1,11 @@
 public abstract class Animal {
     // common instance variables
     private double age;
-
-    // common abstract methods
-    public abstract void eat();
-
-    public abstract void funFact();
-
-    public abstract String getScientificName();
-
-    public abstract void makeNoise();
-
-    public abstract String getSpecies();
+    private String name;
+    private boolean isAlive;
+    protected double hunger;
+    private double weight;
+    private int speed;
 
 
 
@@ -24,4 +18,18 @@ public abstract class Animal {
         this.age = age;
     }
     
+    // common abstract methods
+    public abstract void eat();
+
+    public abstract void funFact();
+
+    public abstract String getScientificName();
+
+    public abstract void makeNoise();
+
+    public abstract String getSpecies();
+
+    public abstract boolean isAlive();
+
+
 }
