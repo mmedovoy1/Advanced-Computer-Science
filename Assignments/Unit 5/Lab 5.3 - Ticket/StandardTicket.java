@@ -20,8 +20,7 @@ public class StandardTicket extends Ticket {
 
     public void printPrice() {
         BigDecimal decimalFormatter = new BigDecimal(getTotalPrice()).setScale(2, RoundingMode.HALF_UP); // rounds totalPrice to 2 decimal places, will be 1 decimal place if last digit is 0 (i.e. 7.50 -> 7.5)
-
-System.out.println("Ticket Price: $" + decimalFormatter.doubleValue()); // prints the price
+        System.out.println("Ticket Price: $" + decimalFormatter.doubleValue()); // prints the price
     }
 
     public void printCancellationPolicy() {
@@ -29,7 +28,7 @@ System.out.println("Ticket Price: $" + decimalFormatter.doubleValue()); // print
         System.out.println("Can be canceled within 24 hours before the event. Cancellation fee applies.");
     }
 
-    public void priintTicketDetails() {
+    public void printTicketDetails() {
         super.printTicketDetails();
         printTicketType();
         printPrice();
